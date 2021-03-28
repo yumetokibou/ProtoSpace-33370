@@ -9,7 +9,7 @@
        <% if user_signed_in? && current_user.id == @prototype.user_id %>
         <div class="prototype__manage">
           <%= link_to "編集する", edit_prototype_path(@prototype.id), class: :prototype__btn %>
-          <%= link_to "削除する", prototypes_path(@prototype.id), class: :prototype__btn %>
+          <%= link_to "削除する", prototype_path(@prototype), class: :prototype__btn, method: :delete  %>
         </div>
         <% end %>
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
@@ -47,7 +47,7 @@
         <ul class="comments_lists">
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
             <li class="comments_list">
-          　　<% @comments.each do |comment| %>
+          <% @comments.each do |comment| %>
            <p>
            <%= comment.text %>
           <%= link_to comment.user.name, user_path(@prototype.id) %>
